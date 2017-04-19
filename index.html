@@ -267,9 +267,9 @@ div.alert.success {
                 }
 
 
-            var test = new Audio('sounds/test.mp3')
+
             a.on('click', function(){
-                test.play();
+                new Audio('sounds/kick.wav').play();
             })
 
             b.on('click', function(){
@@ -367,7 +367,12 @@ div.alert.success {
 
 
                 $('.btn').on('click', function () {
-                    
+                    back.addClass('active');
+                    front.addClass('active');
+                    setTimeout(function(){
+                        back.removeClass('active');
+                        front.removeClass('active');
+                    }, 200);
                     var d = new Date().getTime();
                     var kk = countProperties(rec);
 
