@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+      
+        <meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0" />
+      
+    </head>
+    <body>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Comfortaa|Permanent+Marker');
+        body {
+            margin: 0;
+            background-color: #34495e;
+            font-size: 0;
+        }
+        h1 {
+            font-family: 'Permanent Marker';
+            margin: 0;
+            font-size: 54px;
+            color: white;
+            text-align: center;
+            margin-top: 70px;
+            text-shadow: rgb(165, 165, 168) 0px 1px 4px;
+        }
+        div.pads {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        div.menu {
+            position: absolute;
+            bottom: 100px;
+            width: 100%;
+            box-shadow: 0px 13px 26px -14px rgba(0,0,0,0.75);
+            z-index: 1;
+        }
+        div.menu button {
+            width: 50%;
+            height: 50px;
+            color: #34495e;
+            font-family: 'Comfortaa';
+            background-color: #EEEEEE;
+        }
+        button {
+            width: 25%;
+            margin: 0;
+            height: 100px;
+            border: none;
+            outline: none;
+        }
+
+        button.kick {
+            background-color: #2ecc71;
+        }
+        button.snare {
+            background-color: #3498db;
+        }
+        button.hihat {
+            background-color: #e74c3c;
+        }
+        button.perc {
+            background-color: #8e44ad;
+        }
+        body {
+  background-color: #05182d;
+}
+
+@-webkit-keyframes backgroundAnimate {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -10000px;
+    top: -2000px;
+  }
+}
+
+@-moz-keyframes backgroundAnimate {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -10000px;
+    top: -2000px;
+  }
+}
+
+@-o-keyframes backgroundAnimate {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -10000px;
+    top: -2000px;
+  }
+}
+
+@keyframes backgroundAnimate {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -10000px;
+    top: -2000px;
+  }
+}
+
+#back {
+  background: url(http://www.tranexnet.com/img/back.png) repeat 20% 20%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.4;
+  z-index: -1;
+  -webkit-animation-name: backgroundAnimate;
+  -webkit-animation-duration: 500s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: backgroundAnimate;
+  -moz-animation-duration: 5s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-name: backgroundAnimate;
+  -o-animation-duration: 500s;
+  -o-animation-timing-function: linear;
+  -o-animation-iteration-count: infinite;
+  animation-name: backgroundAnimate;
+  animation-duration: 500s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transition-duration: .2s;
+}
+
+#back.active {
+    transform: scale(1.5);
+    
+}
+
+#front {
+  background: url(http://www.tranexnet.com/img/front.png) repeat 35% 35%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  z-index: -1;
+  -webkit-animation-name: backgroundAnimate;
+  -webkit-animation-duration: 300s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: backgroundAnimate;
+  -moz-animation-duration: 300s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-name: backgroundAnimate;
+  -o-animation-duration: 300s;
+  -o-animation-timing-function: linear;
+  -o-animation-iteration-count: infinite;
+  animation-name: backgroundAnimate;
+  animation-duration: 300s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+    transition-duration: .2s;
+}
+
+#front.active {
+    transform: scale(2);
+}
+
+div.alert {
+    font-size: 20px;
+    width: calc( 80% - 42px );
+    font-family: 'Comfortaa';
+    transition-duration: .5s;
+    position: absolute;
+    left: -80%;
+    color: white;
+    top: 20px;
+    border-right: 2px solid transparent;
+    padding: 20px;
+  
+}
+
+div.alert.active {
+    left: 0;
+}
+div.alert.error {
+    border-color: #7f0709;
+  background-color: #bf074b;
+}
+div.alert.success {
+    background-color: #8fbf2f;
+    border-color: #539753;
+    
+}
+
+
+    </style>
+    <div id="back"></div>
+    <div id="front"></div>
+    <div class="alert" id="alert">
+        Message
+    </div>
+    <h1>Drop</h1>
+    <div class="controls">
+        <div class="menu">
+            <button id="check">CHECK</button>
+            <button id="listen">LISTEN</button>
+        </div>
+        <div class="pads">
+            <button id="a" data-attr="kick" class="btn kick"></button>
+            <button id="b" data-attr="snare" class="btn snare"></button>
+            <button id="c" data-attr="hihat" class="btn hihat"></button>
+            <button id="d" data-attr="perc" class="btn perc"></button>
+        </div>
+       
+        
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var back = $('#back');
+            var front = $('#front');
+            var alert = $('#alert');
+
+            var a = $('#a')
+            var b = $('#b');
+            var c = $('#c')
+            var d = $('#d');
+
+
+            var listen = $('#listen');
+            var check = $('#check');
+
+            var rec = {};
+            var start = 0;
+
+
+            var lvl = {
+                    '0': {
+                        'name' : 'kick'
+                    },
+                    '520': {
+                        'name' : 'kick'
+                    },
+                    '700': {
+                        'name' : 'snare'
+                    },
+                    '1100': {
+                        'name' : 'kick'
+                    },
+                    '1860': {
+                        'name' : 'kick'
+                    },
+                    '2200': {
+                        'name' : 'snare'
+                    }
+                }
+
+            
+
+            a.on('click', function(){
+                new Audio('sounds/kick.wav').play();
+            })
+
+            b.on('click', function(){
+                new Audio('sounds/snare.wav').play();
+            })
+
+            c.on('click', function(){
+                new Audio('sounds/perc.wav').play();
+            })
+
+            d.on('click', function(){
+                new Audio('sounds/hihat.wav').play();
+            })
+
+            //Listen the level
+            listen.on('click', function () {
+                rec = {};
+                preview(lvl);
+            })
+
+            //check the record
+            check.on('click', function(){
+                var i = 0;
+                var errors = 0;
+                //check sound order
+                $.each( lvl, function( key, value ) {
+
+                    if(typeof rec[Object.keys(rec)[i]] !== 'undefined') {
+                        if(rec[Object.keys(rec)[i]].name !== value.name){
+                            errors += 1;
+                        }
+                      }else {
+                        errors += 1;
+                      }
+                  i++
+                });
+
+                if(errors>0){
+                    showError('Retry!')
+                    rec = {};
+                    return false;
+                }
+
+
+                //check sound timing
+                i = 0;
+                errors = 0;
+                var res = [];
+                $.each( lvl, function( key, value ) {
+                    if(i > 0) {
+                        if( Math.abs(Object.keys(rec)[i] - key ) < 500){
+                            res.push((( key - Math.abs(Object.keys(rec)[i] - key) ) / key) *100);
+                        } else {
+                            console.log(i + ' : too late / too soon')
+                            errors += 1;
+                        }
+                    }
+                    i++;
+                    
+                });
+                
+                
+                var sum = res.reduce(function(a, b) { return a + b; }, 0);
+                if(errors === 0 ) {
+                    showSuccess(Math.round(sum/res.length) + '%');
+                    preview(lvl);
+                    rec = {};
+                }else {
+                    showError('Retry!')
+                    rec = {};
+                }
+            })
+
+            function showSuccess (score) {
+                alert.addClass('active').addClass('success').html('Winner, Score : ' + score)
+                setTimeout(function(){
+                    alert.removeClass('active').removeClass('success');
+                }, 2000);
+            }
+
+            function showError (error) {
+                alert.addClass('active').addClass('error').html(error)
+                setTimeout(function(){
+                    alert.removeClass('active').removeClass('error');
+                }, 2000);
+            }
+            //record input
+            function record() {
+
+
+                
+
+
+
+
+
+                $('.btn').on('click', function () {
+                    back.addClass('active');
+                    front.addClass('active');
+                    setTimeout(function(){
+                        back.removeClass('active');
+                        front.removeClass('active');
+                    }, 200);
+                    var d = new Date().getTime();
+                    var kk = countProperties(rec);
+
+                    if(kk === 0) {
+                        start = new Date().getTime();
+                    }
+
+                    if(kk === 0){
+                        rec[0] = {'name': $(this).attr('data-attr')}
+                    }else{
+                        
+                        rec[d - start] = {'name': $(this).attr('data-attr')}
+                    }
+                })
+            }
+            
+            //Listen the level
+            function preview (lvl){
+                $.each( lvl, function( key, value ) {
+                    setTimeout(function(){
+                        var audio  = new Audio('sounds/' + value.name + '.wav');
+                        audio.play() 
+                    }, key);
+                });
+            }
+
+            //return the number property of an object
+            function countProperties(obj) {
+                var count = 0;
+                for(var prop in obj) {
+                    if(obj.hasOwnProperty(prop))
+                        ++count;
+                }
+                return count;
+            }
+
+            record();
+            
+        })
+    </script>
+
+    </body>
+</html>
