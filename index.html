@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8" />
 
-      
+
         <meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0" />
-      
+
     </head>
     <body>
     <style type="text/css">
@@ -141,7 +141,7 @@
 
 #back.active {
     transform: scale(1.5);
-    
+
 }
 
 #front {
@@ -187,7 +187,7 @@ div.alert {
     top: 20px;
     border-right: 2px solid transparent;
     padding: 20px;
-  
+
 }
 
 div.alert.active {
@@ -200,7 +200,7 @@ div.alert.error {
 div.alert.success {
     background-color: #8fbf2f;
     border-color: #539753;
-    
+
 }
 
 
@@ -222,12 +222,19 @@ div.alert.success {
             <button id="c" data-attr="hihat" class="btn hihat"></button>
             <button id="d" data-attr="perc" class="btn perc"></button>
         </div>
-       
-        
+
+
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="howler.js"></script>
     <script type="text/javascript">
         $(function () {
+
+
+          var kick = new Howl({
+            src: ['./sounds/kick.wav']
+          })
+
             var back = $('#back');
             var front = $('#front');
             var alert = $('#alert');
@@ -266,10 +273,10 @@ div.alert.success {
                     }
                 }
 
-            
+
 
             a.on('click', function(){
-                new Audio('sounds/kick.wav').play();
+                kick.play();
             })
 
             b.on('click', function(){
@@ -328,10 +335,10 @@ div.alert.success {
                         }
                     }
                     i++;
-                    
+
                 });
-                
-                
+
+
                 var sum = res.reduce(function(a, b) { return a + b; }, 0);
                 if(errors === 0 ) {
                     showSuccess(Math.round(sum/res.length) + '%');
@@ -360,7 +367,7 @@ div.alert.success {
             function record() {
 
 
-                
+
 
 
 
@@ -383,18 +390,18 @@ div.alert.success {
                     if(kk === 0){
                         rec[0] = {'name': $(this).attr('data-attr')}
                     }else{
-                        
+
                         rec[d - start] = {'name': $(this).attr('data-attr')}
                     }
                 })
             }
-            
+
             //Listen the level
             function preview (lvl){
                 $.each( lvl, function( key, value ) {
                     setTimeout(function(){
                         var audio  = new Audio('sounds/' + value.name + '.wav');
-                        audio.play() 
+                        audio.play()
                     }, key);
                 });
             }
@@ -410,7 +417,7 @@ div.alert.success {
             }
 
             record();
-            
+
         })
     </script>
 
